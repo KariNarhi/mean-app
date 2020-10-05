@@ -1,0 +1,11 @@
+{
+  "name": "mean-app",
+  "version": "1.0.0",
+  "description": "MEAN stack tutorial",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app"
+  },
+  "author": "Kari Närhi",
+  "license": "MIT"
+}
