@@ -4,7 +4,7 @@
   "description": "MEAN stack tutorial",
   "main": "app.js",
   "scripts": {
-    "start": "node app"
+    "start": "nodemon app"
   },
   "author": "Kari Närhi",
   "license": "MIT",
@@ -16,5 +16,8 @@
     "mongoose": "^5.10.7",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }
