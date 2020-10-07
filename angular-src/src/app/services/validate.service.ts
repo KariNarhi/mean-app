@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import User from '../models/user';
+import { User_Register_Request } from '../models/user';
 
 @Injectable({
   providedIn: 'root',
@@ -7,7 +7,7 @@ import User from '../models/user';
 export class ValidateService {
   constructor() {}
 
-  validateRegister(user: User): Boolean {
+  validateRegister(user: User_Register_Request): Boolean {
     if (
       user.name === undefined ||
       user.email === undefined ||

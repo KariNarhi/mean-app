@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ValidateService } from 'src/app/services/validate.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
-import { HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import User from 'src/app/models/user';
+import {
+  User_Register_Request,
+  User_Register_Response,
+} from 'src/app/models/user';
 
 @Component({
   selector: 'app-register',
@@ -26,8 +28,8 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onRegisterSubmit() {
-    const user: User = {
+  onRegisterSubmit(): Boolean {
+    const user: User_Register_Request = {
       name: this.name,
       email: this.email,
       username: this.username,
@@ -55,8 +57,8 @@ export class RegisterComponent implements OnInit {
     // Register user
     this.authService
       .registerUser(user)
-      .subscribe((data: HttpResponse<JSON>) => {
-        if (data['success']) {
+      .subscribe((data: User_Register_Response) => {
+        if (data.success) {
           this.flashMessage.show(`User ${user.username} Registered`, {
             cssClass: 'alert-success',
             timeout: 3000,

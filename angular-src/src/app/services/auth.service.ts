@@ -1,25 +1,59 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import User from '../models/user';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {
+  User_Register_Request,
+  User_Auth_Response,
+  User_Login_Request,
+  User_Register_Response,
+  User_LocalStorage,
+} from '../models/user';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  authToken: any;
-  user: User;
+  authToken: string;
+  user: User_LocalStorage;
 
   constructor(private http: HttpClient) {}
 
-  registerUser(user: User): Observable<HttpResponse<JSON>> {
+  registerUser(
+    user: User_Register_Request
+  ): Observable<User_Register_Response> {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http
-      .post<HttpResponse<JSON>>('http://localhost:3000/users/register', user, {
+    return this.http.post<User_Register_Response>(
+      'http://localhost:3000/users/register',
+      user,
+      {
         headers: headers,
-      })
-      .pipe(map((res: HttpResponse<JSON>) => res));
+      }
+    );
+  }
+
+  authenticateUser(user: User_Login_Request): Observable<User_Auth_Response> {
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post<User_Auth_Response>(
+      'http://localhost:3000/users/authenticate',
+      user,
+      {
+        headers: headers,
+      }
+    );
+  }
+
+  storeUserData(token: string, user: User_LocalStorage) {
+    localStorage.setItem('id_token', token);
+    localStorage.setItem('user', JSON.stringify(user));
+    this.authToken = token;
+    this.user = user;
+  }
+
+  logout() {
+    this.authToken = null;
+    this.user = null;
+    localStorage.clear();
   }
 }
