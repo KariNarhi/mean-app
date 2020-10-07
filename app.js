@@ -22,11 +22,10 @@ mongoose.connection.on("error", (err) => {
 });
 
 const app = express();
-
-const users = require("./routes/users");
-
 // CORS middleware
 app.use(cors());
+
+const users = require("./routes/users");
 
 // Set static folder
 app.use(express.static(path.join(__dirname, "public")));
