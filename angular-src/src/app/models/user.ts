@@ -33,3 +33,9 @@ export class User_LocalStorage {
   username: string;
   email: string;
 }
+
+export class User_Profile {
+  name: string;
+  username: string;
+  email: string;
+}

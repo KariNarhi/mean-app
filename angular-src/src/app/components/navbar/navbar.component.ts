@@ -10,12 +10,12 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavbarComponent implements OnInit {
   constructor(
-    private authService: AuthService,
+    public authService: AuthService,
     private router: Router,
     private flashMessage: FlashMessagesService
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onLogoutClick(): boolean {
     this.authService.logout();
