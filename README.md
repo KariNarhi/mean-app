@@ -10,7 +10,11 @@ The API uses JWT (JSON Web Token) for registering users into MongoDB and authent
 
 > npm install to install dependencies.
 
-> npm start for starting the backend Node.js/Express server.
+> npm start for starting the Node.js/Express server backend.
+
+> npm run dev for the Angular Front-end
+
+> ng build (output directory is the public folder at the root of the project)
 
 # Endpoints
 
